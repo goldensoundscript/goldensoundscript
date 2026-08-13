@@ -1,104 +1,543 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechStore - Your E-commerce Platform</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>TechStore | Premium Technology & Electronics</title>
+    <meta name="description" content="TechStore - Your trusted source for premium electronics, gadgets, and accessories with 30+ years of quality service.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: { 800: '#142742', 900: '#0b1a2e', 950: '#060e1a' },
+                        gold: { 500: '#f5c542', 600: '#d9a21b' },
+                        brand: { 500: '#25a3d3' }
+                    },
+                    fontFamily: {
+                        sans: ['Segoe UI', 'Roboto', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        };
+    </script>
+
+    <!-- Font Awesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        body { background-color: #f9fafc; color: #1e1e2a; }
+        .header-shadow { box-shadow: 0 4px 20px rgba(11, 26, 46, 0.15); }
+        .card-sutha {
+            background: #ffffff;
+            border-radius: 24px;
+            border: 1px solid #eef2f8;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-sutha:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 35px rgba(11, 26, 46, 0.12);
+            border-color: rgba(245, 197, 66, 0.5);
+        }
+        .btn-call-brand {
+            background-color: #25a3d3;
+            color: #ffffff;
+            transition: all 0.2s ease;
+        }
+        .btn-call-brand:hover {
+            background-color: #1c88b2;
+            transform: scale(1.02);
+            box-shadow: 0 6px 16px rgba(37, 163, 211, 0.35);
+        }
+        .btn-navy-brand {
+            background-color: #0b1a2e;
+            color: #ffffff;
+            transition: all 0.2s ease;
+        }
+        .btn-navy-brand:hover {
+            background-color: #1a2f4c;
+            transform: scale(1.02);
+            box-shadow: 0 6px 16px rgba(11, 26, 46, 0.25);
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .active-pill { background-color: #0b1a2e !important; color: #f5c542 !important; }
+        .line-clamp-1 { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; }
+        .line-clamp-2 { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+    </style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-content">
-                <div class="logo">
-                    <h1>TechStore</h1>
-                </div>
-                <ul class="nav-menu">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="products.html">Products</a></li>
-                    <li><a href="cart.html">Cart <span id="cart-count" class="badge">0</span></a></li>
-                    <li><a href="auth.html" id="auth-link">Login</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<body class="min-h-screen flex flex-col font-sans antialiased">
+    <!-- Top Announcement -->
+    <div class="bg-navy-900 text-white text-xs sm:text-sm font-medium py-2 px-4 text-center border-b border-slate-800">
+        <span class="inline-flex items-center gap-1.5 bg-gold-500 text-navy-950 px-2.5 py-0.5 rounded-full text-xs font-bold uppercase">
+            <i class="fa-solid fa-award"></i> Premium Quality
+        </span>
+        <span class="hidden sm:inline ml-2">TechStore: Your Trusted Technology Partner. Use code <strong>TECH20</strong> for 20% OFF!</span>
+    </div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h2>Welcome to TechStore</h2>
-                <p>Discover the latest technology products at unbeatable prices</p>
-                <a href="products.html" class="btn btn-primary">Shop Now</a>
-            </div>
-        </div>
-    </section>
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 bg-navy-900 text-white header-shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-2xl bg-gold-500 text-navy-900 flex items-center justify-center text-2xl shadow-md group-hover:rotate-6 transition-transform">
+                        <i class="fa-solid fa-laptop"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xl sm:text-2xl font-bold tracking-tight text-white">TechStore</span>
+                        <span class="text-[10px] tracking-widest text-slate-300 uppercase font-semibold">Premium Electronics</span>
+                    </div>
+                </a>
 
-    <!-- Featured Products -->
-    <section class="featured-products">
-        <div class="container">
-            <h2>Featured Products</h2>
-            <div class="products-grid" id="featured-products">
-                <!-- Products will be loaded here via JavaScript -->
-            </div>
-        </div>
-    </section>
+                <!-- Desktop Nav -->
+                <nav class="hidden lg:flex items-center space-x-6 font-medium text-sm text-slate-200">
+                    <a href="#shop" class="hover:text-gold-500 border-b-2 border-transparent hover:border-gold-500 py-1"><i class="fa-solid fa-list-check mr-1.5 text-xs text-gold-500"></i>Products</a>
+                    <a href="#experience" class="hover:text-gold-500 border-b-2 border-transparent hover:border-gold-500 py-1"><i class="fa-solid fa-medal mr-1.5 text-xs text-gold-500"></i>Our Story</a>
+                    <a href="#calculator" class="hover:text-gold-500 border-b-2 border-transparent hover:border-gold-500 py-1"><i class="fa-solid fa-calculator mr-1.5 text-xs text-gold-500"></i>Savings</a>
+                    <a href="#bulk" class="hover:text-gold-500 border-b-2 border-transparent hover:border-gold-500 py-1"><i class="fa-solid fa-truck-ramp-box mr-1.5 text-xs text-gold-500"></i>Wholesale</a>
+                    <a href="#contact" class="hover:text-gold-500 border-b-2 border-transparent hover:border-gold-500 py-1"><i class="fa-solid fa-location-dot mr-1.5 text-xs text-gold-500"></i>Contact</a>
+                </nav>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>🚚 Free Shipping</h3>
-                    <p>On orders over $50</p>
-                </div>
-                <div class="feature-card">
-                    <h3>🔒 Secure Payment</h3>
-                    <p>100% safe transactions</p>
-                </div>
-                <div class="feature-card">
-                    <h3>↩️ Easy Returns</h3>
-                    <p>30-day return policy</p>
-                </div>
-                <div class="feature-card">
-                    <h3>💬 24/7 Support</h3>
-                    <p>Dedicated customer service</p>
+                <!-- Actions -->
+                <div class="flex items-center gap-3">
+                    <button onclick="toggleSearch()" class="p-2.5 rounded-full hover:bg-navy-800 text-slate-200 hover:text-gold-500 transition">
+                        <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                    </button>
+                    
+                    <div id="searchBox" class="absolute right-0 top-20 w-72 sm:w-80 bg-white rounded-2xl p-2 shadow-2xl border-2 border-gold-500 hidden z-50">
+                        <input type="text" id="searchInput" placeholder="Search products..." class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-gold-500 text-sm" onkeyup="handleSearch(this.value)">
+                    </div>
+
+                    <button onclick="openCartDrawer()" class="relative p-2.5 rounded-full hover:bg-navy-800 text-slate-200 hover:text-gold-500 transition">
+                        <i class="fa-solid fa-cart-shopping text-lg"></i>
+                        <span id="cartCountBadge" class="absolute -top-1 -right-1 bg-gold-500 text-navy-950 font-bold text-[11px] w-5 h-5 rounded-full flex items-center justify-center scale-0 transition-transform shadow-md">0</span>
+                    </button>
+
+                    <a href="tel:+919842971196" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold text-xs uppercase tracking-wide transition shadow-md">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>Call Us</span>
+                    </a>
+
+                    <button onclick="toggleMobileNav()" class="lg:hidden p-2 rounded-xl text-slate-200 hover:bg-navy-800">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
                 </div>
             </div>
         </div>
-    </section>
+
+        <!-- Mobile Nav -->
+        <div id="mobileNav" class="hidden lg:hidden bg-navy-950 border-t border-slate-800 px-4 py-4 space-y-3">
+            <a href="#shop" onclick="toggleMobileNav()" class="block px-3 py-2 rounded-lg text-slate-200 hover:bg-navy-800"><i class="fa-solid fa-list-check text-gold-500 w-6"></i>Shop Products</a>
+            <a href="#experience" onclick="toggleMobileNav()" class="block px-3 py-2 rounded-lg text-slate-200 hover:bg-navy-800"><i class="fa-solid fa-medal text-gold-500 w-6"></i>Our Story</a>
+            <a href="#calculator" onclick="toggleMobileNav()" class="block px-3 py-2 rounded-lg text-slate-200 hover:bg-navy-800"><i class="fa-solid fa-calculator text-gold-500 w-6"></i>Savings Calc</a>
+            <a href="#bulk" onclick="toggleMobileNav()" class="block px-3 py-2 rounded-lg text-slate-200 hover:bg-navy-800"><i class="fa-solid fa-truck-ramp-box text-gold-500 w-6"></i>Wholesale</a>
+            <a href="#contact" onclick="toggleMobileNav()" class="block px-3 py-2 rounded-lg text-slate-200 hover:bg-navy-800"><i class="fa-solid fa-location-dot text-gold-500 w-6"></i>Contact</a>
+            <a href="tel:+919842971196" class="block w-full text-center py-2.5 rounded-xl bg-gold-500 text-navy-950 font-bold text-sm">
+                <i class="fa-solid fa-phone mr-2"></i>Call Now
+            </a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+
+        <!-- Hero Banner -->
+        <section class="bg-gradient-to-br from-blue-50 to-blue-100 py-10 border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6 bg-white p-6 sm:p-8 rounded-3xl shadow-xl border border-slate-200">
+                    <div class="flex items-center gap-6">
+                        <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl bg-navy-900 text-gold-500 flex items-center justify-center shrink-0 shadow-lg">
+                            <i class="fa-solid fa-headphones text-4xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl sm:text-3xl font-bold text-navy-900">TechStore - Your Tech Partner</h2>
+                            <p class="text-slate-600 text-sm mt-1">Premium electronics at unbeatable prices with premium support.</p>
+                            <div class="flex items-center gap-2 mt-3 text-xs text-emerald-600 font-bold">
+                                <i class="fa-solid fa-star text-gold-500"></i> Trusted by 50,000+ Customers
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 w-full md:w-auto">
+                        <button onclick="quickAddProduct(1)" class="w-full md:w-auto btn-navy-brand px-6 py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-plus"></i> Quick Add
+                        </button>
+                        <a href="tel:+919842971196" class="w-full md:w-auto btn-call-brand px-6 py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-phone"></i> Call
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience/Trust Section -->
+        <section id="experience" class="py-10 bg-navy-900 text-white border-b border-navy-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-8">
+                    <span class="bg-gold-500/20 text-gold-500 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                        <i class="fa-solid fa-star text-gold-500 mr-1"></i> Our Excellence
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-2">Trusted Technology Solutions</h2>
+                    <p class="text-slate-300 text-xs sm:text-sm mt-1">Serving customers worldwide with premium products and exceptional service since day one.</p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+                    <div class="p-5 rounded-2xl bg-navy-950 border border-slate-800 text-center">
+                        <div class="text-3xl sm:text-4xl font-black text-gold-500 mb-1">100k+</div>
+                        <div class="text-xs font-bold text-white">Products Sold</div>
+                        <p class="text-[10px] text-slate-400 mt-1">Quality tech products delivered</p>
+                    </div>
+                    <div class="p-5 rounded-2xl bg-navy-950 border border-slate-800 text-center">
+                        <div class="text-3xl sm:text-4xl font-black text-gold-500 mb-1">50k+</div>
+                        <div class="text-xs font-bold text-white">Happy Clients</div>
+                        <p class="text-[10px] text-slate-400 mt-1">Worldwide customer base</p>
+                    </div>
+                    <div class="p-5 rounded-2xl bg-navy-950 border border-slate-800 text-center">
+                        <div class="text-3xl sm:text-4xl font-black text-gold-500 mb-1">100%</div>
+                        <div class="text-xs font-bold text-white">Genuine Products</div>
+                        <p class="text-[10px] text-slate-400 mt-1">Official warranty & support</p>
+                    </div>
+                    <div class="p-5 rounded-2xl bg-navy-950 border border-slate-800 text-center">
+                        <div class="text-3xl sm:text-4xl font-black text-gold-500 mb-1">24/7</div>
+                        <div class="text-xs font-bold text-white">Customer Support</div>
+                        <p class="text-[10px] text-slate-400 mt-1">Always ready to help</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="shop" class="py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 border-l-4 border-gold-500 pl-4">
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl font-bold text-navy-900">Premium Product Catalog</h2>
+                        <p class="text-xs text-slate-500 mt-0.5">Browse our curated selection of latest technology products.</p>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button onclick="filterCategory('all', this)" class="cat-pill active-pill px-4 py-2 rounded-full text-xs font-bold bg-navy-900 text-gold-500 shadow-sm">All Items</button>
+                        <button onclick="filterCategory('phones', this)" class="cat-pill px-4 py-2 rounded-full text-xs font-bold bg-slate-200 text-slate-700 hover:bg-slate-300">Phones</button>
+                        <button onclick="filterCategory('laptops', this)" class="cat-pill px-4 py-2 rounded-full text-xs font-bold bg-slate-200 text-slate-700 hover:bg-slate-300">Laptops</button>
+                        <button onclick="filterCategory('accessories', this)" class="cat-pill px-4 py-2 rounded-full text-xs font-bold bg-slate-200 text-slate-700 hover:bg-slate-300">Accessories</button>
+
+                        <select id="sortSelect" onchange="sortProducts(this.value)" class="ml-auto px-3 py-2 rounded-xl bg-slate-200 text-xs font-bold text-navy-900 focus:outline-none focus:ring-2 focus:ring-gold-500">
+                            <option value="">Sort by...</option>
+                            <option value="low">Price: Low to High</option>
+                            <option value="high">Price: High to Low</option>
+                            <option value="rating">Top Rated</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Dynamic products -->
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Savings Calculator -->
+        <section id="calculator" class="py-16 bg-navy-900 text-white relative overflow-hidden">
+            <div class="absolute -right-20 -top-20 w-80 h-80 bg-gold-500/10 rounded-full filter blur-3xl pointer-events-none"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <span class="bg-gold-500/20 text-gold-500 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Interactive Tool</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-3">Budget Calculator</h2>
+                    <p class="text-slate-300 text-xs sm:text-sm mt-1">Estimate how much you can save by upgrading to premium tech products.</p>
+                </div>
+
+                <div class="bg-navy-950 rounded-3xl p-6 sm:p-10 border border-slate-800 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-6">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Number of Items</label>
+                            <input type="number" id="calcCount" value="5" min="1" onchange="calculateSavings()" class="w-full px-4 py-2 rounded-xl bg-navy-900 border border-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-gold-500 text-sm">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Usage Hours Per Day</label>
+                            <input type="number" id="calcHours" value="8" min="1" onchange="calculateSavings()" class="w-full px-4 py-2 rounded-xl bg-navy-900 border border-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-gold-500 text-sm">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Your Budget (₹)</label>
+                            <input type="number" id="calcOldWatt" value="50000" min="0" step="1000" onchange="calculateSavings()" class="w-full px-4 py-2 rounded-xl bg-navy-900 border border-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-gold-500 text-sm">
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 bg-gradient-to-br from-navy-900 to-navy-800 rounded-2xl p-6 border border-gold-500/30 text-center space-y-4">
+                        <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">Potential Value</span>
+                        <div id="savingsAmount" class="text-3xl sm:text-4xl font-black text-gold-500 drop-shadow">₹0 / year</div>
+                        
+                        <div class="grid grid-cols-2 gap-3 pt-2 text-left border-t border-slate-700/60">
+                            <div class="text-[10px]">
+                                <span class="text-slate-400">Items:</span>
+                                <p id="calcCountVal" class="font-bold text-gold-500">5 Items</p>
+                            </div>
+                            <div class="text-[10px]">
+                                <span class="text-slate-400">Hours/Day:</span>
+                                <p id="calcHoursVal" class="font-bold text-gold-500">8 Hours</p>
+                            </div>
+                        </div>
+
+                        <a href="#shop" class="inline-block w-full py-3 bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold text-xs rounded-xl transition shadow-lg">
+                            <i class="fa-solid fa-shopping-cart mr-2"></i>Explore Products
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- B2B Wholesale Section -->
+        <section id="bulk" class="py-16 bg-white border-t border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-gold-600">B2B & Wholesale</span>
+                        <h2 class="text-2xl sm:text-3xl font-bold text-navy-900 mt-1">Bulk Orders & Corporate Packages</h2>
+                        <p class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
+                            Get special pricing and dedicated support for corporate, retail, and wholesale orders. Our team provides customized solutions for businesses of all sizes.
+                        </p>
+                        
+                        <div class="mt-6 space-y-3 text-xs text-navy-900 font-semibold">
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-600"></i> Volume Discounts Up to 30%</div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-600"></i> Flexible Payment Terms</div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-600"></i> Dedicated Account Manager</div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-600"></i> Priority Shipping Available</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xl">
+                        <h3 class="font-bold text-navy-900 text-lg mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-envelope text-gold-600"></i> Get Quote Now
+                        </h3>
+                        <form id="bulkQuoteForm" onsubmit="handleQuoteSubmit(event)" class="space-y-4">
+                            <input type="text" id="bName" placeholder="Your Name / Company" class="w-full px-3.5 py-2 rounded-xl bg-white border border-slate-300 text-xs" required>
+                            <input type="email" id="bEmail" placeholder="Email Address" class="w-full px-3.5 py-2 rounded-xl bg-white border border-slate-300 text-xs" required>
+                            <input type="tel" id="bPhone" placeholder="Phone Number" class="w-full px-3.5 py-2 rounded-xl bg-white border border-slate-300 text-xs" required>
+                            <select id="bProduct" class="w-full px-3.5 py-2 rounded-xl bg-white border border-slate-300 text-xs" required>
+                                <option value="">Select Product Category</option>
+                                <option value="Phones & Tablets">Phones & Tablets</option>
+                                <option value="Laptops & Desktops">Laptops & Desktops</option>
+                                <option value="Accessories">Accessories</option>
+                                <option value="Mixed Bulk Order">Mixed Bulk Order</option>
+                            </select>
+                            <textarea id="bLocation" placeholder="Delivery Location & Order Details" rows="3" class="w-full px-3.5 py-2 rounded-xl bg-white border border-slate-300 text-xs resize-none"></textarea>
+                            <button type="submit" class="w-full py-3 bg-navy-900 hover:bg-navy-800 text-gold-500 font-bold text-xs rounded-xl transition shadow-md">
+                                <i class="fa-solid fa-paper-plane mr-2"></i>Send Enquiry
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 bg-slate-50 border-t border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-xs font-bold uppercase tracking-wider text-gold-600">Get In Touch</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-navy-900 mt-1">Contact TechStore</h2>
+                    <p class="text-slate-600 text-xs sm:text-sm mt-1">Reach out to us for any queries, orders, or support needs.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <div class="p-8 rounded-3xl bg-white border border-slate-200 shadow-lg flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-2xl bg-navy-900 text-gold-500 flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-navy-900 text-sm">Our Location</h3>
+                            <p class="text-xs text-slate-600 mt-1">Tech Hub, Downtown</p>
+                            <p class="text-xs text-slate-600">New York, NY 10001</p>
+                        </div>
+                    </div>
+
+                    <div class="p-8 rounded-3xl bg-white border border-slate-200 shadow-lg flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-2xl bg-navy-900 text-gold-500 flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-navy-900 text-sm">Phone & Email</h3>
+                            <p class="text-xs text-slate-600 mt-1">+1 (800) 123-4567</p>
+                            <p class="text-xs text-slate-600">info@techstore.com</p>
+                        </div>
+                    </div>
+
+                    <div class="p-8 rounded-3xl bg-white border border-slate-200 shadow-lg flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-2xl bg-navy-900 text-gold-500 flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-navy-900 text-sm">Business Hours</h3>
+                            <p class="text-xs text-slate-600 mt-1">Mon - Fri: 9AM - 6PM</p>
+                            <p class="text-xs text-slate-600">Sat - Sun: 10AM - 4PM</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>About Us</h4>
-                    <p>TechStore is your one-stop shop for quality technology products.</p>
+    <footer class="bg-navy-950 text-slate-400 py-10 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-slate-800 pb-8 mb-8">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gold-500 text-navy-950 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-laptop"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold text-white">TechStore <span class="text-gold-500 font-light">Electronics</span></span>
+                        <p class="text-xs text-slate-400">Your Trusted Technology Partner</p>
+                    </div>
                 </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="products.html">Products</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>Email: info@techstore.com</p>
-                    <p>Phone: 1-800-TECH-SHOP</p>
+
+                <div class="flex items-center gap-3">
+                    <a href="tel:+919842971196" class="btn-call-brand px-4 py-2 rounded-full font-bold text-xs flex items-center gap-1.5">
+                        <i class="fa-solid fa-phone"></i> +1 800-123-4567
+                    </a>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 TechStore. All rights reserved.</p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-between text-xs gap-4">
+                <p>&copy; 2026 TechStore. Premium Electronics & Gadgets.</p>
+                <div class="flex gap-4 text-slate-400">
+                    <a href="#" onclick="showToast('Warranty: 12 Months on all products with official support.', 'info'); return false;" class="hover:text-gold-500">Warranty Info</a>
+                    <a href="#" onclick="showToast('Shipping: Free on orders over $100. Express available.', 'info'); return false;" class="hover:text-gold-500">Shipping Policy</a>
+                    <a href="#bulk" class="hover:text-gold-500">Bulk Orders</a>
+                </div>
             </div>
         </div>
     </footer>
 
+    <!-- Cart Drawer -->
+    <div id="cartDrawer" class="fixed inset-0 z-50 hidden">
+        <div onclick="closeCartDrawer()" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl flex flex-col justify-between z-10">
+            
+            <div class="p-5 bg-navy-900 text-white flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-cart-shopping text-gold-500"></i>
+                    <h3 class="font-bold text-base">Your Cart</h3>
+                </div>
+                <button onclick="closeCartDrawer()" class="text-slate-300 hover:text-white">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <div id="cartItemsList" class="flex-grow p-5 overflow-y-auto space-y-3">
+                <!-- Cart items -->
+            </div>
+
+            <div class="p-5 border-t border-slate-200 bg-slate-50 space-y-3">
+                <div class="flex gap-2">
+                    <input type="text" id="promoInput" placeholder="Coupon (e.g TECH20)" class="flex-grow px-3 py-2 text-xs rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-gold-500">
+                    <button onclick="applyPromoCode()" class="px-4 py-2 bg-navy-900 text-white text-xs font-bold rounded-xl hover:bg-navy-800">Apply</button>
+                </div>
+
+                <div class="space-y-1 text-xs text-slate-600 bg-white p-3 rounded-xl border border-slate-200">
+                    <div class="flex justify-between">
+                        <span>Subtotal:</span>
+                        <span id="cartSubtotal" class="font-semibold text-slate-800">₹0.00</span>
+                    </div>
+                    <div class="flex justify-between text-emerald-600 font-semibold">
+                        <span>Discount:</span>
+                        <span id="cartDiscount">-₹0.00</span>
+                    </div>
+                    <div class="flex justify-between text-base font-bold text-navy-900 pt-2 border-t border-slate-200">
+                        <span>Total:</span>
+                        <span id="cartTotal" class="text-gold-600">₹0.00</span>
+                    </div>
+                </div>
+
+                <button onclick="openCheckoutModal()" class="w-full py-3.5 btn-navy-brand font-bold text-xs rounded-xl flex items-center justify-center gap-2">
+                    <span>Proceed To Checkout</span>
+                    <i class="fa-solid fa-arrow-right text-gold-500"></i>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Product Quick View Modal -->
+    <div id="productModal" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div id="productModalContent" class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl relative border border-slate-200">
+            <!-- Dynamic content -->
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkoutModal" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl relative border border-slate-200">
+            <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <h3 class="font-bold text-xl text-navy-900 mb-1">Complete Your Order</h3>
+            <p class="text-xs text-slate-500 mb-4">Enter your details to finalize purchase.</p>
+
+            <form onsubmit="placeOrder(event)" class="space-y-3">
+                <div>
+                    <label for="custName" class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Full Name</label>
+                    <input required id="custName" type="text" placeholder="e.g. John Doe" class="w-full px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-300 text-xs">
+                </div>
+                <div>
+                    <label for="custPhone" class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Mobile Number</label>
+                    <input required id="custPhone" type="tel" placeholder="+1 234 567 8900" class="w-full px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-300 text-xs">
+                </div>
+                <div>
+                    <label for="custAddress" class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Delivery Address</label>
+                    <input required id="custAddress" type="text" placeholder="Street, City, State, Zip" class="w-full px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-300 text-xs">
+                </div>
+                <div>
+                    <label for="custEmail" class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Email Address</label>
+                    <input required id="custEmail" type="email" placeholder="your@email.com" class="w-full px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-300 text-xs">
+                </div>
+
+                <div class="pt-2">
+                    <span class="block text-[11px] font-bold uppercase text-slate-600 mb-1">Payment Method</span>
+                    <div class="grid grid-cols-2 gap-2 text-xs">
+                        <label class="p-2.5 rounded-xl border border-slate-300 flex items-center gap-2 font-medium cursor-pointer hover:border-gold-500">
+                            <input type="radio" name="payment" value="card" checked> Credit Card
+                        </label>
+                        <label class="p-2.5 rounded-xl border border-slate-300 flex items-center gap-2 font-medium cursor-pointer hover:border-gold-500">
+                            <input type="radio" name="payment" value="wallet"> Digital Wallet
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pt-3">
+                    <button type="submit" class="w-full py-3 bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold text-xs rounded-xl shadow-md transition">
+                        Confirm Order (<span id="checkoutAmount">₹0</span>)
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- Scripts -->
     <script src="js/api.js"></script>
     <script src="js/cart.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/store.js"></script>
+</body>
+</html>
 </body>
 </html>
