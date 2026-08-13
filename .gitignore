@@ -1,0 +1,56 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node
+node_modules/
+npm-debug.log
+package-lock.json
+yarn.lock
+
+# Build
+dist/
+build/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+logs/
+*.log
+
+# Temp files
+temp/
+tmp/
+*.temp
+
+# IDE
+*.iml
+.project
+.classpath
+
+# OS specific
+.DS_Store/
+.AppleDouble
+.LSOverride
+
+# Browser cache
+.cache/
+
+# Credentials
+credentials.json
+secrets.json

@@ -1,0 +1,23 @@
+{
+  "name": "techstore-ecommerce",
+  "version": "1.0.0",
+  "description": "A modern e-commerce website built with HTML, CSS, and JavaScript",
+  "main": "index.html",
+  "scripts": {
+    "start": "open index.html",
+    "serve": "npx http-server .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ecommerce",
+    "store",
+    "shopping",
+    "online-store"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
