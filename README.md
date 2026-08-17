@@ -1,4 +1,4 @@
-# TechStore - E-commerce Website
+# Sutha Electronics - E-commerce Website
 
 A modern, fully-functional e-commerce website built with HTML, CSS, and JavaScript. Features a responsive design, shopping cart, checkout system, authentication, and API integration.
 
