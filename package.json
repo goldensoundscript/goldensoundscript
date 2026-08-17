@@ -1,23 +1,18 @@
 {
-  "name": "techstore-ecommerce",
+  "name": "sutha-electronics",
   "version": "1.0.0",
-  "description": "A modern e-commerce website built with HTML, CSS, and JavaScript",
-  "main": "index.html",
+  "private": true,
+  "description": "Sutha Electronics - Premium LED Lighting Solutions E-Commerce Store",
   "scripts": {
-    "start": "open index.html",
-    "serve": "npx http-server .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "keywords": [
-    "ecommerce",
-    "store",
-    "shopping",
-    "online-store"
-  ],
-  "author": "Your Name",
-  "license": "MIT",
-  "dependencies": {},
-  "devDependencies": {
-    "http-server": "^14.1.1"
+  "dependencies": {
+    "canvas-confetti": "^1.9.4",
+    "next": "^14.2.15",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }
